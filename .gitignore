@@ -39,7 +39,6 @@ dist/
 *.wasm
 *.js
 *.data
-*.html
 
 # VS Code settings
 .vscode/
