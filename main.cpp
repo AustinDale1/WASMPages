@@ -17,13 +17,20 @@
 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
+    #include <emscripten/html5.h>
+#endif
+
+// Reduce screen size for web
+#if defined(PLATFORM_WEB)
+    constexpr int SCREEN_WIDTH = 800;
+    constexpr int SCREEN_HEIGHT = 600;
+#else
+    constexpr int SCREEN_WIDTH = 2400;
+    constexpr int SCREEN_HEIGHT = 1350;
 #endif
 
 
 
-
-constexpr int SCREEN_WIDTH = 2400;
-constexpr int SCREEN_HEIGHT = 1350;
 constexpr float GRAVITY = 9.81f;
 constexpr int BULLET_INITIAL_SPEED = 823;
 constexpr float SCALE_FACTOR = 100.0;
@@ -143,12 +150,15 @@ int main(void)
     // texture = LoadTextureFromImage(image); 
 
     
-    SetTargetFPS(60);
-
-    while (!WindowShouldClose())
-    {
-        UpdateDrawFrame();
-    }
+    #if defined(PLATFORM_WEB)
+        emscripten_set_main_loop(emscripten_loop, 0, 1);
+    #else
+        SetTargetFPS(60);
+        while (!WindowShouldClose())
+        {
+            UpdateDrawFrame();
+        }
+    #endif
 
     CloseWindow();
 
