@@ -596,243 +596,244 @@ void DrawGame()
     BeginDrawing();
 
         ClearBackground(RAYWHITE);
+        DrawText("testing ", 20, 20, 20, BLACK); 
 
-        Rectangle r = {
-            200, 
-            200,
-            20,
-            20
-            };
-            counterr++;
+        // Rectangle r = {
+        //     200, 
+        //     200,
+        //     20,
+        //     20
+        //     };
+        //     counterr++;
 
-        Rectangle source = {
-            0.0f,
-            0.0f,
-            (float)texture.width,
-            (float)texture.height
-        };
+        // Rectangle source = {
+        //     0.0f,
+        //     0.0f,
+        //     (float)texture.width,
+        //     (float)texture.height
+        // };
 
-        // Define where to draw it on screen and how big
-        Rectangle dest = {
-            myPlane.position.x, 
-            myPlane.position.y,
-            texture.width * .1f,
-            texture.height * .1f
-        };
+        // // Define where to draw it on screen and how big
+        // Rectangle dest = {
+        //     myPlane.position.x, 
+        //     myPlane.position.y,
+        //     texture.width * .1f,
+        //     texture.height * .1f
+        // };
 
 
-        Vector2 origin = {
-            dest.width/2,
-            dest.height/2
-        };
+        // Vector2 origin = {
+        //     dest.width/2,
+        //     dest.height/2
+        // };
 
-        if (!gameOver)
-        {
-            DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, {135, 206, 255, 255});
-            Rectangle grad = {
-                0,
-                0,
-                SCREEN_WIDTH,
-                SCREEN_HEIGHT
-            };
-            Color semiTransparentRed = {255, 0, 0, 128};
+        // if (!gameOver)
+        // {
+        //     DrawRectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, {135, 206, 255, 255});
+        //     Rectangle grad = {
+        //         0,
+        //         0,
+        //         SCREEN_WIDTH,
+        //         SCREEN_HEIGHT
+        //     };
+        //     Color semiTransparentRed = {255, 0, 0, 128};
 
-            Color skyBlue = {135, 206, 255, 255};
+        //     Color skyBlue = {135, 206, 255, 255};
                 
-                // Edges
-            if(myPlane.isCrashed) {
-                DrawRectangleGradientV(50, 0, SCREEN_WIDTH-100, 50, RED, skyBlue);
-                DrawRectangleGradientV(50, SCREEN_HEIGHT - 50, SCREEN_WIDTH-100, 50, skyBlue, RED);
-                DrawRectangleGradientH(0, 50, 50, SCREEN_HEIGHT-100, RED, skyBlue);
-                DrawRectangleGradientH(SCREEN_WIDTH - 50, 50, 50, SCREEN_HEIGHT-100, skyBlue, RED);
+        //         // Edges
+        //     if(myPlane.isCrashed) {
+        //         DrawRectangleGradientV(50, 0, SCREEN_WIDTH-100, 50, RED, skyBlue);
+        //         DrawRectangleGradientV(50, SCREEN_HEIGHT - 50, SCREEN_WIDTH-100, 50, skyBlue, RED);
+        //         DrawRectangleGradientH(0, 50, 50, SCREEN_HEIGHT-100, RED, skyBlue);
+        //         DrawRectangleGradientH(SCREEN_WIDTH - 50, 50, 50, SCREEN_HEIGHT-100, skyBlue, RED);
                 
-                // Corners
-                DrawRectangleGradientEx({0, 0, 50, 50}, RED, RED, skyBlue, RED);
-                DrawRectangleGradientEx({0, SCREEN_HEIGHT-50, 50, 50}, RED, RED, RED, skyBlue);
-                DrawRectangleGradientEx({SCREEN_WIDTH-50, 0, 50, 50}, RED, skyBlue, RED, RED);
-                DrawRectangleGradientEx({SCREEN_WIDTH-50, SCREEN_HEIGHT-50, 50, 50}, skyBlue, RED, RED, RED);
-            }
+        //         // Corners
+        //         DrawRectangleGradientEx({0, 0, 50, 50}, RED, RED, skyBlue, RED);
+        //         DrawRectangleGradientEx({0, SCREEN_HEIGHT-50, 50, 50}, RED, RED, RED, skyBlue);
+        //         DrawRectangleGradientEx({SCREEN_WIDTH-50, 0, 50, 50}, RED, skyBlue, RED, RED);
+        //         DrawRectangleGradientEx({SCREEN_WIDTH-50, SCREEN_HEIGHT-50, 50, 50}, skyBlue, RED, RED, RED);
+        //     }
 
-            std::string text = "Score: " + std::to_string(score);
+        //     std::string text = "Score: " + std::to_string(score);
 
-            DrawText(text.c_str(), 20, 20, 20, BLACK); 
-            DrawFPS(20, 60);
+        //     DrawText(text.c_str(), 20, 20, 20, BLACK); 
+        //     DrawFPS(20, 60);
 
             
-            text = "Health: " + std::to_string(myPlane.health);
-            DrawText(text.c_str(), 1800, 20, 20, BLACK); 
-            text = "Bullets: " + std::to_string(myPlane.dur.count());
-            DrawText(text.c_str(), 1800, 120, 20, BLACK);
+        //     text = "Health: " + std::to_string(myPlane.health);
+        //     DrawText(text.c_str(), 1800, 20, 20, BLACK); 
+        //     text = "Bullets: " + std::to_string(myPlane.dur.count());
+        //     DrawText(text.c_str(), 1800, 120, 20, BLACK);
 
-            for(Plane loopEP : enemyPlanes) {
-                if(loopEP.health > 0) {
-                    text = "EnemyHealth: " + std::to_string(loopEP.health);
-                    DrawText(text.c_str(), 2000, 20, 20, BLACK); 
-                    text = "EnemyBullets: " + std::to_string(loopEP.dur.count());
-                    DrawText(text.c_str(), 2000, 120, 20, BLACK); 
+        //     for(Plane loopEP : enemyPlanes) {
+        //         if(loopEP.health > 0) {
+        //             text = "EnemyHealth: " + std::to_string(loopEP.health);
+        //             DrawText(text.c_str(), 2000, 20, 20, BLACK); 
+        //             text = "EnemyBullets: " + std::to_string(loopEP.dur.count());
+        //             DrawText(text.c_str(), 2000, 120, 20, BLACK); 
 
-                }
-            }
+        //         }
+        //     }
   
 
 
-            text = "shoot pew pew";
-            // DrawRectangleRec((Rectangle){dest.x, dest.y, dest.width, dest.height}, RED);
-            // DrawRectangleLines(dest.x - (dest.width/2), dest.y-(dest.height/2), dest.width, dest.height, RED);
-            // DrawRectanglePro(dest, origin, -myPlane.planeAngle, GREEN);
-            if(isDetecting)
-                DrawRectangle(200, 200, 1000, 200, RED);
-            if(myPlane.planeAngle <= 90 || myPlane.planeAngle > 270)
-                DrawTexturePro(texture, source, dest, origin, -myPlane.planeAngle, WHITE);  // Draw a Texture2D with extended parameters
-            else
-            {           
-                DrawTexturePro(textureFlip3, source, dest, origin, -myPlane.planeAngle, WHITE);
-            }
-            if(myPlane.isCrashed) {
-                smokeInAir.emplace_back(SmokeParticle(myPlane.position, std::chrono::system_clock::now()));
-            }
-            int x = 0;
+        //     text = "shoot pew pew";
+        //     // DrawRectangleRec((Rectangle){dest.x, dest.y, dest.width, dest.height}, RED);
+        //     // DrawRectangleLines(dest.x - (dest.width/2), dest.y-(dest.height/2), dest.width, dest.height, RED);
+        //     // DrawRectanglePro(dest, origin, -myPlane.planeAngle, GREEN);
+        //     if(isDetecting)
+        //         DrawRectangle(200, 200, 1000, 200, RED);
+        //     if(myPlane.planeAngle <= 90 || myPlane.planeAngle > 270)
+        //         DrawTexturePro(texture, source, dest, origin, -myPlane.planeAngle, WHITE);  // Draw a Texture2D with extended parameters
+        //     else
+        //     {           
+        //         DrawTexturePro(textureFlip3, source, dest, origin, -myPlane.planeAngle, WHITE);
+        //     }
+        //     if(myPlane.isCrashed) {
+        //         smokeInAir.emplace_back(SmokeParticle(myPlane.position, std::chrono::system_clock::now()));
+        //     }
+        //     int x = 0;
 
-            for(Plane& ep : enemyPlanes)
-            {
-                // DrawRectangleRec(planeImages[x], RED);
-                // DrawRectangleLines(planeImages[x].x - (planeImages[x].width/2), planeImages[x].y -(planeImages[x].height/2), planeImages[x].width, planeImages[x].height, RED);
-                // DrawRectanglePro(planeImages[x], origin, -ep.planeAngle, GREEN);
-                planeImages[x].x = ep.position.x;
-                planeImages[x].y = ep.position.y;
-                if(ep.planeAngle <= 90 || ep.planeAngle > 270) {
-                    DrawTexturePro(texture, source, planeImages[x], origin, -ep.planeAngle, PINK);  // Draw a Texture2D with extended parameters
-                }
-                else
-                {           
-                    DrawTexturePro(textureFlip3, source, planeImages[x], origin, -ep.planeAngle, PINK);
-                }
-                if(ep.isCrashed) {
-                    smokeInAir.emplace_back(SmokeParticle(ep.position, std::chrono::system_clock::now()));
-                }
-                x++;
-                text = std::to_string(static_cast<int>(ep.dur.count()));
-            }
+        //     for(Plane& ep : enemyPlanes)
+        //     {
+        //         // DrawRectangleRec(planeImages[x], RED);
+        //         // DrawRectangleLines(planeImages[x].x - (planeImages[x].width/2), planeImages[x].y -(planeImages[x].height/2), planeImages[x].width, planeImages[x].height, RED);
+        //         // DrawRectanglePro(planeImages[x], origin, -ep.planeAngle, GREEN);
+        //         planeImages[x].x = ep.position.x;
+        //         planeImages[x].y = ep.position.y;
+        //         if(ep.planeAngle <= 90 || ep.planeAngle > 270) {
+        //             DrawTexturePro(texture, source, planeImages[x], origin, -ep.planeAngle, PINK);  // Draw a Texture2D with extended parameters
+        //         }
+        //         else
+        //         {           
+        //             DrawTexturePro(textureFlip3, source, planeImages[x], origin, -ep.planeAngle, PINK);
+        //         }
+        //         if(ep.isCrashed) {
+        //             smokeInAir.emplace_back(SmokeParticle(ep.position, std::chrono::system_clock::now()));
+        //         }
+        //         x++;
+        //         text = std::to_string(static_cast<int>(ep.dur.count()));
+        //     }
 
 
-            DrawText(text.c_str(), 200, 20, 20, BLACK); 
-            if (pause) DrawText("GAME PAUSED", SCREEN_WIDTH/2 - MeasureText("GAME PAUSED", 40)/2, SCREEN_HEIGHT/2 - 40, 40, GRAY);
-            text = std::to_string(angle);
-            DrawText(text.c_str(), 400, 20, 20, BLACK); 
-            text = std::to_string(myPlane.planeAngle);
-            DrawText(text.c_str(), 600, 20, 20, BLACK); 
-            for (Bullet bullet : bulletsInAir) {
-                if(!bullet.isDone)
-                {
-                    int y = 0;
-                    for(Plane& ep : enemyPlanes)
-                    {
-                        if(CheckCollisionCircles(myPlane.position, myPlane.planeImage.height, ep.position, ep.planeImage.height)) {
-                            ep.isCrashed = true;
-                            myPlane.isCrashed = true;
-                            score++;
-                        }
-                        if(CheckCollisionCircleRec(RotateCircle(bullet.position, ep.position, myPlane.planeAngle), 5.0, planeImages[y]) && (bullet.shotBy.index != ep.index))
-                        {
-                            ep.health--;
-                            if(bullet.shotBy.him && !ep.isCrashed && ep.health <= 0)
-                            {
-                                if(!myPlane.isCrashed) {
-                                    if(myPlane.health >=15){
-                                        myPlane.health = 20;
-                                    } else {
-                                        myPlane.health += 5;
-                                    }
-                                }
-                                score++;
-                                ep.isCrashed = true;
-                            }
-                            text = "HITTHETARGET";
-                            DrawText(text.c_str(), 200, 200, 20, BLACK);
-                            bullet.isDone = true;
+        //     DrawText(text.c_str(), 200, 20, 20, BLACK); 
+        //     if (pause) DrawText("GAME PAUSED", SCREEN_WIDTH/2 - MeasureText("GAME PAUSED", 40)/2, SCREEN_HEIGHT/2 - 40, 40, GRAY);
+        //     text = std::to_string(angle);
+        //     DrawText(text.c_str(), 400, 20, 20, BLACK); 
+        //     text = std::to_string(myPlane.planeAngle);
+        //     DrawText(text.c_str(), 600, 20, 20, BLACK); 
+        //     for (Bullet bullet : bulletsInAir) {
+        //         if(!bullet.isDone)
+        //         {
+        //             int y = 0;
+        //             for(Plane& ep : enemyPlanes)
+        //             {
+        //                 if(CheckCollisionCircles(myPlane.position, myPlane.planeImage.height, ep.position, ep.planeImage.height)) {
+        //                     ep.isCrashed = true;
+        //                     myPlane.isCrashed = true;
+        //                     score++;
+        //                 }
+        //                 if(CheckCollisionCircleRec(RotateCircle(bullet.position, ep.position, myPlane.planeAngle), 5.0, planeImages[y]) && (bullet.shotBy.index != ep.index))
+        //                 {
+        //                     ep.health--;
+        //                     if(bullet.shotBy.him && !ep.isCrashed && ep.health <= 0)
+        //                     {
+        //                         if(!myPlane.isCrashed) {
+        //                             if(myPlane.health >=15){
+        //                                 myPlane.health = 20;
+        //                             } else {
+        //                                 myPlane.health += 5;
+        //                             }
+        //                         }
+        //                         score++;
+        //                         ep.isCrashed = true;
+        //                     }
+        //                     text = "HITTHETARGET";
+        //                     DrawText(text.c_str(), 200, 200, 20, BLACK);
+        //                     bullet.isDone = true;
 
-                            text = std::to_string(planes->planeAngle);
-                        }
-                        y++;
-                    }
-                    Vector2 adjusted = RotateCircle(bullet.position, myPlane.position, myPlane.planeAngle);
-                    // if(CheckCollisionCircleRec(adjusted, 5.0, dest)) {
-                    //     std::cout << dest.x << " " << dest.y << '\n';
-                    //     std::cout << adjusted.x << " " << adjusted.y << '\n';
-                    //     std::cout << bullet.position.x << " " << bullet.position.y << '\n';
-                    //     gameOver = true;
-                    //     break;
-                    // }
-                    if(CheckCollisionCircleRec(RotateCircle(bullet.position, myPlane.position, myPlane.planeAngle), 5.0, dest) && (bullet.shotBy.index != myPlane.index))
-                    {
-                        counter2++;
-                        //std::cout << "ok " << bullet.shotBy.name << " " << myPlane.name << '\n';
-                        myPlane.health--;
-                        if(bullet.isDone)
-                        {
-                            gameOver = true;
-                        }
+        //                     text = std::to_string(planes->planeAngle);
+        //                 }
+        //                 y++;
+        //             }
+        //             Vector2 adjusted = RotateCircle(bullet.position, myPlane.position, myPlane.planeAngle);
+        //             // if(CheckCollisionCircleRec(adjusted, 5.0, dest)) {
+        //             //     std::cout << dest.x << " " << dest.y << '\n';
+        //             //     std::cout << adjusted.x << " " << adjusted.y << '\n';
+        //             //     std::cout << bullet.position.x << " " << bullet.position.y << '\n';
+        //             //     gameOver = true;
+        //             //     break;
+        //             // }
+        //             if(CheckCollisionCircleRec(RotateCircle(bullet.position, myPlane.position, myPlane.planeAngle), 5.0, dest) && (bullet.shotBy.index != myPlane.index))
+        //             {
+        //                 counter2++;
+        //                 //std::cout << "ok " << bullet.shotBy.name << " " << myPlane.name << '\n';
+        //                 myPlane.health--;
+        //                 if(bullet.isDone)
+        //                 {
+        //                     gameOver = true;
+        //                 }
 
-                        if(myPlane.health <= 0)
-                        {
-                            myPlane.isCrashed = true;
-                        }
-                        // myPlane.isCrashed = true;
-                        bullet.isDone = true;
-                    }
-                    DrawCircleV(bullet.position, 3.0f, GRAY);
-                    // DrawCircleV(RotateCircle(bullet.position, myPlane.position, myPlane.planeAngle), 3.0f, PINK);
-                }
-            }
+        //                 if(myPlane.health <= 0)
+        //                 {
+        //                     myPlane.isCrashed = true;
+        //                 }
+        //                 // myPlane.isCrashed = true;
+        //                 bullet.isDone = true;
+        //             }
+        //             DrawCircleV(bullet.position, 3.0f, GRAY);
+        //             // DrawCircleV(RotateCircle(bullet.position, myPlane.position, myPlane.planeAngle), 3.0f, PINK);
+        //         }
+        //     }
             
-            int spCount = 0;
-            for(SmokeParticle sp : smokeInAir) {
-                if(std::chrono::system_clock::now() - sp.start >= std::chrono::seconds(5)) {
-                    // std::time_t now_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-                    // std::tm now_tm = *std::localtime(&now_time_t);
-                    // std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << std::endl;
-                    // std::cout << "It worked tho" << '\n';
-                    // std::time_t now_time_t2 = std::chrono::system_clock::to_time_t(sp.start);
-                    // std::tm now_tm2 = *std::localtime(&now_time_t2);
-                    // std::cout << std::put_time(&now_tm2, "%Y-%m-%d %H:%M:%S") << std::endl;
-                    smokeInAir.erase(smokeInAir.begin() + spCount);
-                } else {
-                    // if(spCount != 0) {
-                    //     break;
-                    // }
-                    // std::time_t now_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-                    // std::tm now_tm = *std::localtime(&now_time_t);
-                    // std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << std::endl;
-                    // std::cout << "Break" << '\n';
-                    // std::time_t now_time_t2 = std::chrono::system_clock::to_time_t(sp.start);
-                    // std::tm now_tm2 = *std::localtime(&now_time_t2);
-                    // std::cout << std::put_time(&now_tm2, "%Y-%m-%d %H:%M:%S") << std::endl;
+        //     int spCount = 0;
+        //     for(SmokeParticle sp : smokeInAir) {
+        //         if(std::chrono::system_clock::now() - sp.start >= std::chrono::seconds(5)) {
+        //             // std::time_t now_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+        //             // std::tm now_tm = *std::localtime(&now_time_t);
+        //             // std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << std::endl;
+        //             // std::cout << "It worked tho" << '\n';
+        //             // std::time_t now_time_t2 = std::chrono::system_clock::to_time_t(sp.start);
+        //             // std::tm now_tm2 = *std::localtime(&now_time_t2);
+        //             // std::cout << std::put_time(&now_tm2, "%Y-%m-%d %H:%M:%S") << std::endl;
+        //             smokeInAir.erase(smokeInAir.begin() + spCount);
+        //         } else {
+        //             // if(spCount != 0) {
+        //             //     break;
+        //             // }
+        //             // std::time_t now_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+        //             // std::tm now_tm = *std::localtime(&now_time_t);
+        //             // std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << std::endl;
+        //             // std::cout << "Break" << '\n';
+        //             // std::time_t now_time_t2 = std::chrono::system_clock::to_time_t(sp.start);
+        //             // std::tm now_tm2 = *std::localtime(&now_time_t2);
+        //             // std::cout << std::put_time(&now_tm2, "%Y-%m-%d %H:%M:%S") << std::endl;
 
-                }
-                if(std::chrono::system_clock::now() - sp.start >= std::chrono::seconds(5)) {
-                    // std::cout << "bigger than five ";
-                }
+        //         }
+        //         if(std::chrono::system_clock::now() - sp.start >= std::chrono::seconds(5)) {
+        //             // std::cout << "bigger than five ";
+        //         }
 
-                std::chrono::duration<float> duration = std::chrono::system_clock::now() - sp.start;
-                // float ouch = (std::chrono::system_clock::now() - sp.start).count();
-                float ouch = duration.count();
-                unsigned char transparent = 128.0f - (128.0f * (ouch / 5));
-                Color tempt = {28, 28, 28, transparent};
-                if(spCount == 0) {
-                    // std::cout << ouch << '\n';
-                }
-                DrawCircle(sp.position.x, sp.position.y, 5, tempt);
-                spCount++;
-            }
-            //text = myPlane.dur;
-            //text = "maybe";
-            text = std::to_string(myPlane.health);
-            DrawText(text.c_str(), 800, 20, 20, BLACK); 
-        }
-        else 
-        {
-            DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth()/2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20)/2, GetScreenHeight()/2 - 50, 20, GRAY);
-        }
+        //         std::chrono::duration<float> duration = std::chrono::system_clock::now() - sp.start;
+        //         // float ouch = (std::chrono::system_clock::now() - sp.start).count();
+        //         float ouch = duration.count();
+        //         unsigned char transparent = 128.0f - (128.0f * (ouch / 5));
+        //         Color tempt = {28, 28, 28, transparent};
+        //         if(spCount == 0) {
+        //             // std::cout << ouch << '\n';
+        //         }
+        //         DrawCircle(sp.position.x, sp.position.y, 5, tempt);
+        //         spCount++;
+        //     }
+        //     //text = myPlane.dur;
+        //     //text = "maybe";
+        //     text = std::to_string(myPlane.health);
+        //     DrawText(text.c_str(), 800, 20, 20, BLACK); 
+        // }
+        // else 
+        // {
+        //     DrawText("PRESS [ENTER] TO PLAY AGAIN", GetScreenWidth()/2 - MeasureText("PRESS [ENTER] TO PLAY AGAIN", 20)/2, GetScreenHeight()/2 - 50, 20, GRAY);
+        // }
     EndDrawing();
 }
 
