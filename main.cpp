@@ -141,10 +141,10 @@ int main(void)
 {
     
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "if you see this, gimme a job");
-    texture = LoadTexture("pfiddyone2.png");
-    textureFlip = LoadTexture("pfiddyone2flip.png");
-    textureFlip2 = LoadTexture("pfiddyone2flip2.png");
-    textureFlip3 = LoadTexture("pfiddyone2flip3.png");
+    // texture = LoadTexture("pfiddyone2.png");
+    // textureFlip = LoadTexture("pfiddyone2flip.png");
+    // textureFlip2 = LoadTexture("pfiddyone2flip2.png");
+    // textureFlip3 = LoadTexture("pfiddyone2flip3.png");
     InitGame();
     // Image image = LoadImage("Untitled design.png");     // Loaded in CPU memory (RAM)
     // texture = LoadTextureFromImage(image); 
