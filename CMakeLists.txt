@@ -19,3 +19,10 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} raylib)
+
+# If using assets, add preload
+if (EMSCRIPTEN)
+    set_target_properties(raylib_game PROPERTIES
+        LINK_FLAGS "--preload-file ${CMAKE_SOURCE_DIR}/assets@/assets"
+    )
+endif()
