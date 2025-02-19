@@ -1,22 +1,21 @@
 #!/bin/bash
 
-# Create build directory
-mkdir -p build
-cd build
+# Clean previous build
+rm -rf build dist
+mkdir -p build dist
 
-# Configure with CMake
+# Configure and build
+cd build
 emcmake cmake .. \
     -DPLATFORM=Web \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_EXE_LINKER_FLAGS="-s USE_GLFW=3 -s ASYNCIFY -s TOTAL_MEMORY=67108864"
+    -DCMAKE_BUILD_TYPE=Release
 
-# Build
 emmake make
 
-# Create dist directory
+# Copy to dist
+cp raylib_game.html ../dist/index.html
+cp raylib_game.js ../dist/
+cp raylib_game.wasm ../dist/
+cp raylib_game.data ../dist/
+
 cd ..
-mkdir -p dist
-cp build/raylib_game.html dist/index.html
-cp build/raylib_game.js dist/
-cp build/raylib_game.wasm dist/
-cp build/raylib_game.data dist/

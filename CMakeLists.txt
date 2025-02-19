@@ -7,22 +7,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Emscripten specific settings
 if(EMSCRIPTEN)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY -s ALLOW_MEMORY_GROWTH=1 -s FORCE_FILESYSTEM=1 --preload-file assets")
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s USE_GLFW=3")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s ASYNCIFY -s ASSERTIONS=1 -s WASM=1")
 endif()
 
 # Find raylib
 find_package(raylib REQUIRED)
 
 # Add your source files
-add_executable(${PROJECT_NAME} main.cpp)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} raylib)
 
-# If using assets, add preload
-if (EMSCRIPTEN)
-    set_target_properties(raylib_game PROPERTIES
-        LINK_FLAGS "--preload-file ${CMAKE_SOURCE_DIR}/assets@/assets"
-    )
-endif()
+# # If using assets, add preload
+# if (EMSCRIPTEN)
+#     set_target_properties(raylib_game PROPERTIES
+#         LINK_FLAGS "--preload-file ${CMAKE_SOURCE_DIR}/assets@/assets"
+#     )
+# endif()
