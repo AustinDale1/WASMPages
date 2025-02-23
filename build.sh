@@ -1,21 +1,17 @@
 #!/bin/bash
 
-# Clean previous build
-rm -rf build dist
-mkdir -p build dist
+# Create build directory if it doesn't exist
+mkdir -p build
 
-# Configure and build
+# Compile with Emscripten
+emcc main.cpp \
+    -o build/raylib_game.html \
+    -s USE_GLFW=3 \
+    -s WASM=1 \
+    -s ASYNCIFY \
+    -s ASSERTIONS=1 \
+    -lraylib
+
+# Serve the files (optional)
 cd build
-emcmake cmake .. \
-    -DPLATFORM=Web \
-    -DCMAKE_BUILD_TYPE=Release
-
-emmake make
-
-# Copy to dist
-cp raylib_game.html ../dist/index.html
-cp raylib_game.js ../dist/
-cp raylib_game.wasm ../dist/
-cp raylib_game.data ../dist/
-
-cd ..
+python -m http.server 8080
