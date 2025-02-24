@@ -808,26 +808,8 @@ void DrawGame()
             int spCount = 0;
             for(SmokeParticle sp : smokeInAir) {
                 if(std::chrono::system_clock::now() - sp.start >= std::chrono::seconds(5)) {
-                    // std::time_t now_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-                    // std::tm now_tm = *std::localtime(&now_time_t);
-                    // std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << std::endl;
-                    // std::cout << "It worked tho" << '\n';
-                    // std::time_t now_time_t2 = std::chrono::system_clock::to_time_t(sp.start);
-                    // std::tm now_tm2 = *std::localtime(&now_time_t2);
-                    // std::cout << std::put_time(&now_tm2, "%Y-%m-%d %H:%M:%S") << std::endl;
+                
                     smokeInAir.erase(smokeInAir.begin() + spCount);
-                } else {
-                    // if(spCount != 0) {
-                    //     break;
-                    // }
-                    // std::time_t now_time_t = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-                    // std::tm now_tm = *std::localtime(&now_time_t);
-                    // std::cout << std::put_time(&now_tm, "%Y-%m-%d %H:%M:%S") << std::endl;
-                    // std::cout << "Break" << '\n';
-                    // std::time_t now_time_t2 = std::chrono::system_clock::to_time_t(sp.start);
-                    // std::tm now_tm2 = *std::localtime(&now_time_t2);
-                    // std::cout << std::put_time(&now_tm2, "%Y-%m-%d %H:%M:%S") << std::endl;
-
                 }
                 if(std::chrono::system_clock::now() - sp.start >= std::chrono::seconds(5)) {
                     // std::cout << "bigger than five ";

@@ -2,39 +2,42 @@ name: Build and Deploy
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
+      
       - name: Install Emscripten
         uses: mymindstorm/setup-emsdk@v11
-
-      - name: Install Dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake git build-essential
-
-      - name: Build Raylib
+      
+      - name: Install Raylib
         run: |
           git clone https://github.com/raysan5/raylib.git
-          cd raylib
-          mkdir build && cd build
-          emcmake cmake -DPLATFORM=Web -DBUILD_EXAMPLES=OFF ..
-          emmake make
-          sudo make install
-
-      - name: Build Project
+          cd raylib/src
+          emcc -c *.c -O3 -sUSE_GLFW=3
+          emar rcs libraylib.a *.o
+          
+      - name: Build WASM
         run: |
-          chmod +x build.sh
-          ./build.sh
-
+          emcc -o index.html main.cpp -Wall -std=c++14 -D_DEFAULT_SOURCE \
+          -Wno-missing-braces -Wunused-result -Os -I. \
+          -I raylib/src -I raylib/src/external \
+          -L. -L raylib/src \
+          -s USE_GLFW=3 -s ASYNCIFY \
+          -s TOTAL_MEMORY=67108864 \
+          -s FORCE_FILESYSTEM=1 \
+          --preload-file assets \
+          --shell-file raylib/src/shell.html \
+          raylib/src/libraylib.a \
+          -DPLATFORM_WEB \
+          -s 'EXPORTED_FUNCTIONS=["_free","_malloc","_main"]' \
+          -s EXPORTED_RUNTIME_METHODS=ccall
+          
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
-          folder: dist
+          folder: .
